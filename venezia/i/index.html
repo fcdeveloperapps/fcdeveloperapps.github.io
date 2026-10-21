@@ -21,7 +21,7 @@
   .scheda { background: #fff; border-radius: 16px; padding: 18px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
   .scheda h2 { margin: 0 0 4px; color: var(--blu); font-size: 21px; }
   .info { color: var(--arancio); font-weight: 700; margin: 0 0 12px; }
-  ol { margin: 0; padding-left: 22px; line-height: 1.6; }
+  ol, ul { margin: 0; padding-left: 22px; line-height: 1.6; }
   .pulsante { display: block; text-align: center; text-decoration: none; font-weight: 800; font-size: 17px; border-radius: 14px; padding: 15px; margin-top: 12px; }
   .apri { background: var(--blu); color: #fff; }
   .play { background: #fff; color: var(--blu); border: 2px solid var(--blu); }
@@ -50,11 +50,13 @@ const PLAY = 'https://play.google.com/store/apps/details?id=' + PACCHETTO;
 const it = !(navigator.language || 'it').toLowerCase().startsWith('en');
 const T = it ? {
   sottotitolo: 'Un amico ti ha mandato un itinerario', sottotitoloPiu: 'Un amico ti ha mandato degli itinerari',
+  sottotitoloCuore: 'Un amico ti consiglia dei luoghi', cuore: 'Luoghi del cuore', luoghi: 'luoghi',
   tappe: 'tappe', consigliato: "Itinerario consigliato dell'app", apri: "Apri nell'app", play: "Scarica l'app da Google Play",
   nota: "Se hai già l'app, tocca «Apri nell'app»: l'itinerario si aggiunge ai tuoi con un tocco. Altrimenti scaricala gratis da Google Play e poi torna a questo link.",
   errore: 'Questo link non è valido o è incompleto.'
 } : {
   sottotitolo: 'A friend sent you an itinerary', sottotitoloPiu: 'A friend sent you some itineraries',
+  sottotitoloCuore: 'A friend recommends some places', cuore: 'Favourite places', luoghi: 'places',
   tappe: 'stops', consigliato: 'Recommended itinerary of the app', apri: 'Open in the app', play: 'Get the app on Google Play',
   nota: "If you already have the app, tap “Open in the app”: the itinerary is added to yours with one tap. Otherwise get it free on Google Play and then come back to this link.",
   errore: 'This link is not valid or is incomplete.'
@@ -88,12 +90,16 @@ if (!dati) {
     html = '<div class="scheda"><h2>🧭 ' + esc(dati.n) + '</h2><p class="info">' + dati.p.length + ' ' + T.tappe + '</p><ol>' +
       nomi.map((n) => '<li>' + esc(n) + '</li>').join('') + '</ol></div>';
     document.title = dati.n + ' – Venezia';
+  } else if (dati.k === 'p') {
+    const nomi = (dati.q && dati.q.length === dati.p.length ? dati.q : dati.p.map(nomeDaId));
+    html = '<div class="scheda"><h2><span style="color:#e11d48">♥</span> ' + T.cuore + '</h2><p class="info">' + dati.p.length + ' ' + T.luoghi + '</p><ul>' +
+      nomi.map((n) => '<li>' + esc(n) + '</li>').join('') + '</ul></div>';
   } else if (dati.k === 'e') {
     html = dati.l.map((x) => '<div class="scheda"><h2>🧭 ' + esc(x.n) + '</h2><p class="info">' + x.p.length + ' ' + T.tappe + '</p></div>').join('');
   }
   contenuto.innerHTML = html;
 }
-document.getElementById('sottotitolo').textContent = dati && dati.k === 'e' ? T.sottotitoloPiu : T.sottotitolo;
+document.getElementById('sottotitolo').textContent = !dati ? T.sottotitolo : dati.k === 'e' ? T.sottotitoloPiu : dati.k === 'p' ? T.sottotitoloCuore : T.sottotitolo;
 document.getElementById('play').textContent = T.play;
 document.getElementById('nota').textContent = T.nota;
 const apri = document.getElementById('apri');
