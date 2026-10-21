@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Itinerario a Venezia</title>
+<meta name="description" content="Un itinerario a Venezia condiviso con l'app Venezia: Monumenti &amp; altro.">
+<meta property="og:title" content="Un itinerario a Venezia">
+<meta property="og:description" content="Aprilo nell'app Venezia: Monumenti &amp; altro.">
+<meta property="og:image" content="https://fcdeveloperapps.github.io/venezia/icona.png">
+<link rel="icon" href="../icona.png">
+<style>
+  :root { --blu: #0f3d5e; --oro: #f3d98b; --arancio: #b45309; --testo: #1f2937; --grigio: #64748b; --bordo: #e2e8f0; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: #aad3df; color: var(--testo); }
+  header { background: var(--blu); color: #fff; padding: 20px 16px 18px; display: flex; gap: 12px; align-items: center; }
+  header img { width: 52px; height: 52px; border-radius: 12px; }
+  header h1 { margin: 0; font-size: 19px; }
+  header p { margin: 2px 0 0; color: var(--oro); font-size: 14px; }
+  main { max-width: 560px; margin: 0 auto; padding: 16px; }
+  .scheda { background: #fff; border-radius: 16px; padding: 18px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+  .scheda h2 { margin: 0 0 4px; color: var(--blu); font-size: 21px; }
+  .info { color: var(--arancio); font-weight: 700; margin: 0 0 12px; }
+  ol { margin: 0; padding-left: 22px; line-height: 1.6; }
+  .pulsante { display: block; text-align: center; text-decoration: none; font-weight: 800; font-size: 17px; border-radius: 14px; padding: 15px; margin-top: 12px; }
+  .apri { background: var(--blu); color: #fff; }
+  .play { background: #fff; color: var(--blu); border: 2px solid var(--blu); }
+  .nota { color: var(--grigio); font-size: 14px; line-height: 1.5; margin-top: 14px; }
+  .errore { color: #b91c1c; }
+</style>
+</head>
+<body>
+<header>
+  <img src="../icona.png" alt="">
+  <div>
+    <h1>Venezia: Monumenti &amp; altro</h1>
+    <p id="sottotitolo"></p>
+  </div>
+</header>
+<main>
+  <div id="contenuto"></div>
+  <a class="pulsante apri" id="apri" href="#"></a>
+  <a class="pulsante play" id="play" href="https://play.google.com/store/apps/details?id=com.monumenti.venezia"></a>
+  <p class="nota" id="nota"></p>
+</main>
+<script>
+// Stessa codifica dell'app (src/condivisione.js): JSON in base64 "url-safe" nel parametro d
+const PACCHETTO = 'com.monumenti.venezia';
+const PLAY = 'https://play.google.com/store/apps/details?id=' + PACCHETTO;
+const it = !(navigator.language || 'it').toLowerCase().startsWith('en');
+const T = it ? {
+  sottotitolo: 'Un amico ti ha mandato un itinerario', sottotitoloPiu: 'Un amico ti ha mandato degli itinerari',
+  tappe: 'tappe', consigliato: "Itinerario consigliato dell'app", apri: "Apri nell'app", play: "Scarica l'app da Google Play",
+  nota: "Se hai già l'app, tocca «Apri nell'app»: l'itinerario si aggiunge ai tuoi con un tocco. Altrimenti scaricala gratis da Google Play e poi torna a questo link.",
+  errore: 'Questo link non è valido o è incompleto.'
+} : {
+  sottotitolo: 'A friend sent you an itinerary', sottotitoloPiu: 'A friend sent you some itineraries',
+  tappe: 'stops', consigliato: 'Recommended itinerary of the app', apri: 'Open in the app', play: 'Get the app on Google Play',
+  nota: "If you already have the app, tap “Open in the app”: the itinerary is added to yours with one tap. Otherwise get it free on Google Play and then come back to this link.",
+  errore: 'This link is not valid or is incomplete.'
+};
+document.documentElement.lang = it ? 'it' : 'en';
+
+function decodifica(testo) {
+  const b64 = testo.replace(/-/g, '+').replace(/_/g, '/');
+  const bin = atob(b64 + '==='.slice((b64.length + 3) % 4));
+  const byte = Uint8Array.from(bin, (c) => c.charCodeAt(0));
+  return JSON.parse(new TextDecoder().decode(byte));
+}
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const nomeDaId = (id) => { const s = String(id).replace(/-/g, ' '); return s.charAt(0).toUpperCase() + s.slice(1); };
+
+const contenuto = document.getElementById('contenuto');
+const d = new URLSearchParams(location.search).get('d');
+let dati = null;
+try { dati = d ? decodifica(d) : null; } catch (e) { dati = null; }
+
+if (!dati) {
+  contenuto.innerHTML = '<div class="scheda"><p class="errore">' + T.errore + '</p></div>';
+  document.getElementById('apri').style.display = 'none';
+} else {
+  let html = '';
+  if (dati.k === 'c') {
+    html = '<div class="scheda"><h2>⭐ ' + esc(dati.n || '') + '</h2><p class="info">' + T.consigliato + '</p></div>';
+    document.title = (dati.n || '') + ' – Venezia';
+  } else if (dati.k === 'i') {
+    const nomi = (dati.q && dati.q.length === dati.p.length ? dati.q : dati.p.map(nomeDaId));
+    html = '<div class="scheda"><h2>🧭 ' + esc(dati.n) + '</h2><p class="info">' + dati.p.length + ' ' + T.tappe + '</p><ol>' +
+      nomi.map((n) => '<li>' + esc(n) + '</li>').join('') + '</ol></div>';
+    document.title = dati.n + ' – Venezia';
+  } else if (dati.k === 'e') {
+    html = dati.l.map((x) => '<div class="scheda"><h2>🧭 ' + esc(x.n) + '</h2><p class="info">' + x.p.length + ' ' + T.tappe + '</p></div>').join('');
+  }
+  contenuto.innerHTML = html;
+}
+document.getElementById('sottotitolo').textContent = dati && dati.k === 'e' ? T.sottotitoloPiu : T.sottotitolo;
+document.getElementById('play').textContent = T.play;
+document.getElementById('nota').textContent = T.nota;
+const apri = document.getElementById('apri');
+apri.textContent = T.apri;
+// Su Android apre l'app con i dati del link (o Google Play se l'app non c'è); altrove prova il link diretto all'app
+const percorso = location.host + location.pathname + location.search;
+apri.href = /android/i.test(navigator.userAgent)
+  ? 'intent://' + percorso + '#Intent;scheme=https;package=' + PACCHETTO + ';S.browser_fallback_url=' + encodeURIComponent(PLAY) + ';end'
+  : 'veneziamonumenti://i/' + location.search;
+</script>
+</body>
+</html>
