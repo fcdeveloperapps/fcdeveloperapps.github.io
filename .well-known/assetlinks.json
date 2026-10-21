@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.monumenti.venezia",
+      "sha256_cert_fingerprints": [
+        "87:C5:91:4E:97:45:93:96:BC:7E:57:6C:B0:FD:3C:72:08:C7:96:55:54:F5:D9:CE:93:22:2A:C7:2C:BD:12:1B"
+      ]
+    }
+  }
+]
