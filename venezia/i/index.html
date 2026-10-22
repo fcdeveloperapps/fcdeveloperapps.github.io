@@ -47,21 +47,49 @@
 // Stessa codifica dell'app (src/condivisione.js): JSON in base64 "url-safe" nel parametro d
 const PACCHETTO = 'com.monumenti.venezia';
 const PLAY = 'https://play.google.com/store/apps/details?id=' + PACCHETTO;
-const it = !(navigator.language || 'it').toLowerCase().startsWith('en');
-const T = it ? {
-  sottotitolo: 'Un amico ti ha mandato un itinerario', sottotitoloPiu: 'Un amico ti ha mandato degli itinerari',
-  sottotitoloCuore: 'Un amico ti consiglia dei luoghi', cuore: 'Luoghi del cuore', luoghi: 'luoghi',
-  tappe: 'tappe', consigliato: "Itinerario consigliato dell'app", apri: "Apri nell'app", play: "Scarica l'app da Google Play",
-  nota: "Se hai già l'app, tocca «Apri nell'app»: l'itinerario si aggiunge ai tuoi con un tocco. Altrimenti scaricala gratis da Google Play e poi torna a questo link.",
-  errore: 'Questo link non è valido o è incompleto.'
-} : {
-  sottotitolo: 'A friend sent you an itinerary', sottotitoloPiu: 'A friend sent you some itineraries',
-  sottotitoloCuore: 'A friend recommends some places', cuore: 'Favourite places', luoghi: 'places',
-  tappe: 'stops', consigliato: 'Recommended itinerary of the app', apri: 'Open in the app', play: 'Get the app on Google Play',
-  nota: "If you already have the app, tap “Open in the app”: the itinerary is added to yours with one tap. Otherwise get it free on Google Play and then come back to this link.",
-  errore: 'This link is not valid or is incomplete.'
+const LINGUE_OK = ['it', 'en', 'fr', 'de', 'es'];
+const T_TUTTE = {
+  it: {
+    sottotitolo: 'Un amico ti ha mandato un itinerario', sottotitoloPiu: 'Un amico ti ha mandato degli itinerari',
+    sottotitoloCuore: 'Un amico ti consiglia dei luoghi', cuore: 'Luoghi del cuore', luoghi: 'luoghi',
+    tappe: 'tappe', consigliato: "Itinerario consigliato dell'app", apri: "Apri nell'app", play: "Scarica l'app da Google Play",
+    nota: "Se hai già l'app, tocca «Apri nell'app»: l'itinerario si aggiunge ai tuoi con un tocco. Altrimenti scaricala gratis da Google Play e poi torna a questo link.",
+    errore: 'Questo link non è valido o è incompleto.', titoloPred: 'Itinerario a Venezia', descPred: "Un itinerario a Venezia condiviso con l'app Venezia: Monumenti & altro."
+  },
+  en: {
+    sottotitolo: 'A friend sent you an itinerary', sottotitoloPiu: 'A friend sent you some itineraries',
+    sottotitoloCuore: 'A friend recommends some places', cuore: 'Favourite places', luoghi: 'places',
+    tappe: 'stops', consigliato: 'Recommended itinerary of the app', apri: 'Open in the app', play: 'Get the app on Google Play',
+    nota: "If you already have the app, tap “Open in the app”: the itinerary is added to yours with one tap. Otherwise get it free on Google Play and then come back to this link.",
+    errore: 'This link is not valid or is incomplete.', titoloPred: 'Itinerary in Venice', descPred: 'An itinerary in Venice shared with the app Venezia: Monumenti & altro.'
+  },
+  fr: {
+    sottotitolo: 'Un ami vous a envoyé un itinéraire', sottotitoloPiu: 'Un ami vous a envoyé des itinéraires',
+    sottotitoloCuore: 'Un ami vous recommande des lieux', cuore: 'Lieux préférés', luoghi: 'lieux',
+    tappe: 'étapes', consigliato: "Itinéraire recommandé de l'application", apri: "Ouvrir dans l'application", play: "Télécharger l'application sur Google Play",
+    nota: "Si vous avez déjà l'application, appuyez sur « Ouvrir dans l'application » : l'itinéraire est ajouté aux vôtres en un geste. Sinon, téléchargez-la gratuitement sur Google Play puis revenez à ce lien.",
+    errore: "Ce lien n'est pas valide ou est incomplet.", titoloPred: 'Itinéraire à Venise', descPred: "Un itinéraire à Venise partagé avec l'application Venezia : Monumenti & altro."
+  },
+  de: {
+    sottotitolo: 'Ein Freund hat dir eine Route geschickt', sottotitoloPiu: 'Ein Freund hat dir Routen geschickt',
+    sottotitoloCuore: 'Ein Freund empfiehlt dir einige Orte', cuore: 'Lieblingsorte', luoghi: 'Orte',
+    tappe: 'Stationen', consigliato: 'Empfohlene Route der App', apri: 'In der App öffnen', play: 'App bei Google Play holen',
+    nota: "Wenn du die App schon hast, tippe auf „In der App öffnen“: Die Route wird mit einem Tipp zu deinen hinzugefügt. Sonst lade sie kostenlos bei Google Play herunter und komm dann zu diesem Link zurück.",
+    errore: 'Dieser Link ist ungültig oder unvollständig.', titoloPred: 'Route in Venedig', descPred: 'Eine Route in Venedig, geteilt mit der App Venezia: Monumenti & altro.'
+  },
+  es: {
+    sottotitolo: 'Un amigo te ha enviado un itinerario', sottotitoloPiu: 'Un amigo te ha enviado varios itinerarios',
+    sottotitoloCuore: 'Un amigo te recomienda algunos lugares', cuore: 'Lugares favoritos', luoghi: 'lugares',
+    tappe: 'paradas', consigliato: 'Itinerario recomendado de la app', apri: 'Abrir en la app', play: 'Descarga la app en Google Play',
+    nota: "Si ya tienes la app, toca «Abrir en la app»: el itinerario se añade a los tuyos con un toque. Si no, descárgala gratis en Google Play y vuelve a este enlace.",
+    errore: 'Este enlace no es válido o está incompleto.', titoloPred: 'Itinerario en Venecia', descPred: 'Un itinerario en Venecia compartido con la app Venezia: Monumenti & altro.'
+  }
 };
-document.documentElement.lang = it ? 'it' : 'en';
+// lingua del messaggio condiviso (campo "lg" dei dati), altrimenti quella del browser, altrimenti italiano
+const linguaDelBrowser = (navigator.language || 'it').slice(0, 2).toLowerCase();
+const linguaDaDati = (() => { try { return new URLSearchParams(location.search).get('d') ? decodifica(new URLSearchParams(location.search).get('d')).lg : null; } catch (e) { return null; } })();
+const lingua = LINGUE_OK.includes(linguaDaDati) ? linguaDaDati : LINGUE_OK.includes(linguaDelBrowser) ? linguaDelBrowser : 'it';
+const T = T_TUTTE[lingua];
 
 function decodifica(testo) {
   const b64 = testo.replace(/-/g, '+').replace(/_/g, '/');
