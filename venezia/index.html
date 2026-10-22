@@ -2,11 +2,58 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Venezia: Monumenti &amp; altro</title>
-<meta http-equiv="refresh" content="0; url=https://play.google.com/store/apps/details?id=com.monumenti.venezia">
+<meta name="description" content="Mappa offline dei monumenti di Venezia, con foto, orari, itinerari a piedi e servizi utili. Scaricala su Google Play o sull'App Store.">
+<meta property="og:title" content="Venezia: Monumenti &amp; altro">
+<meta property="og:description" content="Mappa offline dei monumenti di Venezia: foto, orari, itinerari a piedi e servizi utili.">
+<meta property="og:image" content="https://fcdeveloperapps.github.io/venezia/icona.png">
+<link rel="icon" href="icona.png">
+<style>
+:root { --accent:#0f3d5e; --gold:#b8892a; --bg:#f3f6f8; --fg:#12303f; --muted:#536c79; --line:#d7e2e8; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background:var(--bg); color:var(--fg);
+  min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
+main { max-width:460px; width:100%; text-align:center; display:grid; gap:18px; }
+img.icona { width:96px; height:96px; border-radius:22px; margin:0 auto; box-shadow:0 6px 18px rgba(15,61,94,.18); }
+h1 { font-family: Georgia, "Times New Roman", serif; color:var(--accent); font-size:34px; line-height:1.1; margin:4px 0 0; }
+.sotto { color:var(--muted); font-size:16px; line-height:1.5; margin:0; }
+.negozi { display:grid; gap:12px; margin-top:8px; }
+.negozio { display:flex; align-items:center; justify-content:center; gap:10px; text-decoration:none; background:var(--accent);
+  color:#fff; border-radius:14px; padding:15px 18px; font-weight:700; font-size:16px; }
+.negozio:hover, .negozio:focus-visible { background:#0b2f4a; outline:none; }
+.negozio.presto { background:#fff; color:var(--muted); border:1.5px dashed #9fb4c1; cursor:default; }
+.negozio.presto:hover { background:#fff; }
+.negozio small { display:block; font-weight:400; font-size:12px; opacity:.85; }
+.note { font-size:13px; color:var(--muted); line-height:1.5; margin-top:6px; }
+footer { font-size:13px; color:var(--muted); display:grid; gap:6px; margin-top:10px; }
+footer a { color:var(--accent); }
+</style>
 </head>
 <body>
-<p><a href="https://play.google.com/store/apps/details?id=com.monumenti.venezia">Venezia: Monumenti &amp; altro su Google Play</a></p>
+<main>
+  <img class="icona" src="icona.png" alt="Logo di Venezia: Monumenti &amp; altro">
+  <h1>Venezia: Monumenti &amp; altro</h1>
+  <p class="sotto">Mappa offline dei monumenti di Venezia: foto, orari, biglietti, itinerari a piedi e servizi utili, anche senza connessione.</p>
+
+  <div class="negozi">
+    <!-- Google Play: attivo quando l'app è pubblica -->
+    <a class="negozio" href="https://play.google.com/store/apps/details?id=com.monumenti.venezia">
+      Scarica su Google Play
+    </a>
+
+    <!-- App Store: da attivare quando l'app sarà pubblicata su Apple (inserire il link e togliere la classe "presto") -->
+    <span class="negozio presto" aria-disabled="true">
+      <span>Presto su App Store<small>in arrivo</small></span>
+    </span>
+  </div>
+
+  <p class="note">Gratuita e senza pubblicità. I dati della posizione restano sul telefono.</p>
+
+  <footer>
+    <a href="https://claude.ai/artifact/WCBz8nZpXHsDerpNDBvqFk">Privacy policy</a>
+    <span>Contatti: info.fc.developer@gmail.com</span>
+  </footer>
+</main>
 </body>
 </html>
