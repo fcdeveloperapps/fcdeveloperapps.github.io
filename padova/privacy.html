@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Padova App Privacy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600&family=Cormorant+Garamond:wght@600&display=swap">
+<style>
+/* Layout: una colonna leggibile, pillole per le lingue, una sezione per lingua; colori dell'app (blu laguna, oro) */
+:root {
+  --bg: #f3f6f8; --surface: #ffffff; --fg: #12303f; --muted: #536c79;
+  --accent: #0f3d5e; --gold: #b8892a; --line: #d7e2e8; --note: #f6ecd3;
+  --display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --body: "Libre Franklin", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0b1820; --surface: #11232e; --fg: #e2edf2; --muted: #9db3be;
+  --accent: #8cc4e3; --gold: #e2bd6a; --line: #20394a; --note: #33301f; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0b1820; --surface: #11232e; --fg: #e2edf2; --muted: #9db3be;
+  --accent: #8cc4e3; --gold: #e2bd6a; --line: #20394a; --note: #33301f; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 64px; }
+main { max-width: 680px; margin: 0 auto; display: grid; gap: 28px; }
+header { display: grid; gap: 6px; }
+.eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+h1 { font-family: var(--display); font-size: clamp(32px, 7vw, 46px); line-height: 1.1; margin: 0; color: var(--accent); text-wrap: balance; }
+.meta { color: var(--muted); font-size: 14px; }
+nav { display: flex; flex-wrap: wrap; gap: 8px; }
+nav a { text-decoration: none; color: var(--fg); border: 1px solid var(--line); background: var(--surface);
+  border-radius: 999px; padding: 6px 14px; font-size: 14px; font-weight: 600; }
+nav a:hover, nav a:focus-visible { border-color: var(--gold); color: var(--accent); outline: none; }
+section { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px clamp(16px, 4vw, 28px); display: grid; gap: 10px; scroll-margin-top: 16px; min-width: 0; }
+h2 { font-family: var(--display); font-size: 26px; margin: 0; color: var(--accent); }
+h3 { font-size: 15px; margin: 8px 0 0; }
+p { margin: 0; max-width: 65ch; }
+.summary { background: var(--note); border-radius: 10px; padding: 12px 14px; font-weight: 600; }
+a { color: var(--accent); }
+.contact { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14px; user-select: all; }
+footer { color: var(--muted); font-size: 13px; text-align: center; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="eyebrow">Padova: Monumenti &amp; altro · Padova: Landmarks &amp; more · Padoue : monuments et plus · Padova: Sehenswertes &amp; mehr · Padova: monumentos y más</span>
+    <h1>Privacy Policy</h1>
+    <span class="meta">22 ottobre 2026 · 22 October 2026 · 22 octobre 2026 · 22. Oktober 2026 · 22 de octubre de 2026</span>
+  </header>
+
+  <nav aria-label="Lingua / Language">
+    <a href="#it">Italiano</a><a href="#en">English</a><a href="#fr">Français</a><a href="#de">Deutsch</a><a href="#es">Español</a>
+  </nav>
+
+  <section id="it" lang="it">
+    <h2>Informativa sulla privacy</h2>
+    <p class="summary">L'app non raccoglie, non memorizza e non condivide dati personali.</p>
+    <p>L'app <strong>Padova: Monumenti &amp; altro</strong> non richiede registrazione e non contiene pubblicità né strumenti di analisi o tracciamento.</p>
+    <h3>Posizione</h3>
+    <p>Solo se tocchi il pulsante «La mia posizione» e concedi il permesso, l'app usa la posizione del telefono per mostrarti sulla mappa e calcolare la distanza dai luoghi vicini. La posizione è usata soltanto sul dispositivo e solo mentre l'app è aperta: non viene salvata né inviata a nessuno. Puoi revocare il permesso in qualsiasi momento dalle impostazioni del telefono.</p>
+    <h3>Preferenze salvate sul telefono</h3>
+    <p>I luoghi del cuore e i luoghi «Ci sono stato» sono salvati solo nella memoria del telefono, per ritrovarli alla riapertura dell'app: non vengono inviati a nessuno e si cancellano disinstallando l'app.</p>
+    <h3>Mappa e foto</h3>
+    <p>La mappa (dati © OpenStreetMap contributors) e le foto dei luoghi (Wikimedia Commons) sono incluse nell'app: mostrarle non invia alcun dato.</p>
+    <h3>Meteo</h3>
+    <p>Il meteo viene scaricato da Open-Meteo.com. Le richieste riguardano solo la zona di Padova e non contengono dati personali, ma i server che rispondono ricevono l'indirizzo IP del dispositivo, come per qualsiasi sito web.</p>
+    <h3>Link esterni</h3>
+    <p>I pulsanti «Portami lì» e «Sito ufficiale» aprono Google Maps o il browser: da quel momento si applicano le privacy policy di quei servizi.</p>
+    <h3>Contatti</h3>
+    <p class="contact">info.fc.developer@gmail.com</p>
+  </section>
+  <section id="en" lang="en">
+    <h2>Privacy Policy</h2>
+    <p class="summary">The app does not collect, store or share any personal data.</p>
+    <p>The <strong>Padova: Monumenti &amp; altro</strong> app requires no account and contains no ads, analytics or tracking.</p>
+    <h3>Location</h3>
+    <p>Only if you tap the "My location" button and grant permission does the app use your phone's location, to show you on the map and work out the distance to nearby places. The location is used only on the device and only while the app is open: it is never stored or sent anywhere. You can revoke the permission at any time in your phone settings.</p>
+    <h3>Preferences saved on the phone</h3>
+    <p>Favourite places and places marked as "I've been there" are saved only in the phone's memory, so they are still there when you reopen the app: they are not sent to anyone and are deleted when you uninstall the app.</p>
+    <h3>Map and photos</h3>
+    <p>The map (data © OpenStreetMap contributors) and the place photos (Wikimedia Commons) are included in the app: showing them sends no data.</p>
+    <h3>Weather</h3>
+    <p>Weather is loaded from Open-Meteo.com. The requests only concern the Padova area and contain no personal data, but the servers that answer receive the device's IP address, as with any website.</p>
+    <h3>External links</h3>
+    <p>The "Take me there" and "Official website" buttons open Google Maps or the browser: from that moment the privacy policies of those services apply.</p>
+    <h3>Contact</h3>
+    <p class="contact">info.fc.developer@gmail.com</p>
+  </section>
+  <section id="fr" lang="fr">
+    <h2>Politique de confidentialité</h2>
+    <p class="summary">L'application ne collecte, ne conserve et ne partage aucune donnée personnelle.</p>
+    <p>L'application <strong>Padova: Monumenti &amp; altro</strong> ne nécessite aucun compte et ne contient ni publicité, ni outil d'analyse ou de suivi.</p>
+    <h3>Localisation</h3>
+    <p>Seulement si vous touchez le bouton « Ma position » et accordez l'autorisation, l'application utilise la localisation du téléphone pour vous montrer sur la carte et calculer la distance des lieux proches. La localisation est utilisée uniquement sur l'appareil et uniquement pendant que l'application est ouverte : elle n'est jamais enregistrée ni envoyée. Vous pouvez retirer l'autorisation à tout moment dans les réglages du téléphone.</p>
+    <h3>Préférences enregistrées sur le téléphone</h3>
+    <p>Les lieux coups de cœur et les lieux marqués « J'y suis allé » sont enregistrés uniquement dans la mémoire du téléphone : ils ne sont envoyés à personne et sont supprimés à la désinstallation de l'application.</p>
+    <h3>Carte et photos</h3>
+    <p>La carte (données © OpenStreetMap contributors) et les photos des lieux (Wikimedia Commons) sont incluses dans l'application : les afficher n'envoie aucune donnée.</p>
+    <h3>Météo</h3>
+    <p>La météo est chargée depuis Open-Meteo.com. Les requêtes concernent uniquement la zone de Padoue et ne contiennent aucune donnée personnelle, mais les serveurs qui répondent reçoivent l'adresse IP de l'appareil, comme pour tout site web.</p>
+    <h3>Liens externes</h3>
+    <p>Les boutons « Y aller » et « Site officiel » ouvrent Google Maps ou le navigateur : à partir de là, les politiques de confidentialité de ces services s'appliquent.</p>
+    <h3>Contact</h3>
+    <p class="contact">info.fc.developer@gmail.com</p>
+  </section>
+  <section id="de" lang="de">
+    <h2>Datenschutzerklärung</h2>
+    <p class="summary">Die App erfasst, speichert und teilt keine personenbezogenen Daten.</p>
+    <p>Die App <strong>Padova: Monumenti &amp; altro</strong> benötigt kein Konto und enthält weder Werbung noch Analyse- oder Tracking-Werkzeuge.</p>
+    <h3>Standort</h3>
+    <p>Nur wenn Sie die Schaltfläche „Meine Position“ antippen und die Berechtigung erteilen, nutzt die App den Standort des Telefons, um Sie auf der Karte anzuzeigen und die Entfernung zu nahe gelegenen Orten zu berechnen. Der Standort wird nur auf dem Gerät und nur während die App geöffnet ist verwendet: Er wird nie gespeichert oder übertragen. Sie können die Berechtigung jederzeit in den Telefoneinstellungen widerrufen.</p>
+    <h3>Auf dem Telefon gespeicherte Einstellungen</h3>
+    <p>Lieblingsorte und Orte, die Sie als „Ich war dort“ markiert haben, werden nur im Speicher des Telefons gesichert, damit sie beim erneuten Öffnen der App noch da sind: Sie werden an niemanden übermittelt und beim Deinstallieren der App gelöscht.</p>
+    <h3>Karte und Fotos</h3>
+    <p>Die Karte (Daten © OpenStreetMap-Mitwirkende) und die Fotos der Orte (Wikimedia Commons) sind in der App enthalten: Ihre Anzeige sendet keine Daten.</p>
+    <h3>Wetter</h3>
+    <p>Das Wetter wird von Open-Meteo.com geladen. Die Anfragen betreffen nur das Gebiet von Padua und enthalten keine personenbezogenen Daten. Die antwortenden Server erhalten jedoch die IP-Adresse des Geräts, wie bei jeder Website.</p>
+    <h3>Externe Links</h3>
+    <p>Die Schaltflächen „Hinbringen“ und „Offizielle Website“ öffnen Google Maps oder den Browser: ab dann gelten die Datenschutzbestimmungen dieser Dienste.</p>
+    <h3>Kontakt</h3>
+    <p class="contact">info.fc.developer@gmail.com</p>
+  </section>
+  <section id="es" lang="es">
+    <h2>Política de privacidad</h2>
+    <p class="summary">La app no recoge, no almacena y no comparte datos personales.</p>
+    <p>La app <strong>Padova: Monumenti &amp; altro</strong> no requiere registro y no contiene publicidad ni herramientas de análisis o seguimiento.</p>
+    <h3>Ubicación</h3>
+    <p>Solo si pulsas el botón «Mi ubicación» y concedes el permiso, la app usa la ubicación del teléfono para mostrarte en el mapa y calcular la distancia a los lugares cercanos. La ubicación se usa solo en el dispositivo y solo mientras la app está abierta: nunca se guarda ni se envía a nadie. Puedes revocar el permiso en cualquier momento desde los ajustes del teléfono.</p>
+    <h3>Preferencias guardadas en el teléfono</h3>
+    <p>Los lugares favoritos y los lugares marcados como «Ya estuve» se guardan solo en la memoria del teléfono, para encontrarlos al volver a abrir la app: no se envían a nadie y se borran al desinstalar la app.</p>
+    <h3>Mapa y fotos</h3>
+    <p>El mapa (datos © colaboradores de OpenStreetMap) y las fotos de los lugares (Wikimedia Commons) están incluidos en la app: mostrarlos no envía ningún dato.</p>
+    <h3>Tiempo</h3>
+    <p>El tiempo se descarga de Open-Meteo.com. Las peticiones solo se refieren a la zona de Padua y no contienen datos personales, pero los servidores que responden reciben la dirección IP del dispositivo, como cualquier sitio web.</p>
+    <h3>Enlaces externos</h3>
+    <p>Los botones «Llévame allí» y «Web oficial» abren Google Maps o el navegador; a partir de ese momento se aplican las políticas de privacidad de esos servicios.</p>
+    <h3>Contacto</h3>
+    <p class="contact">info.fc.developer@gmail.com</p>
+  </section>
+
+  <footer>Padova: Monumenti &amp; altro · Android</footer>
+</main>
+</body>
+</html>
