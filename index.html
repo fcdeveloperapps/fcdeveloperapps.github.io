@@ -4,34 +4,56 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>fcdeveloperapps</title>
-<meta name="description" content="Le app di fcdeveloperapps.">
+<meta name="description" content="Le app di fcdeveloperapps: guide e mappe dei monumenti del Veneto.">
 <style>
-  :root { --blu: #0f3d5e; --oro: #f3d98b; }
+  :root { --blu: #0f3d5e; --verde: #133d33; --oro: #f3d98b; }
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: #f1f5f9; color: #1f2937; }
-  header { background: var(--blu); color: #fff; padding: 28px 16px; text-align: center; }
-  header h1 { margin: 0; font-size: 24px; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: #f1f5f9; color: #1f2937; line-height: 1.5; }
+  header { background: var(--blu); color: #fff; padding: 36px 16px 28px; text-align: center; }
+  header h1 { margin: 0; font-size: 26px; }
   header p { margin: 6px 0 0; color: var(--oro); }
-  main { max-width: 560px; margin: 0 auto; padding: 16px; }
-  a.app { display: flex; gap: 14px; align-items: center; background: #fff; border-radius: 16px; padding: 14px; text-decoration: none; color: inherit; box-shadow: 0 1px 3px rgba(0,0,0,.12); margin-bottom: 12px; }
-  a.app img { width: 60px; height: 60px; border-radius: 14px; }
-  a.app h2 { margin: 0; font-size: 18px; color: var(--blu); }
-  a.app p { margin: 3px 0 0; font-size: 14px; color: #64748b; }
+  main { max-width: 620px; margin: 0 auto; padding: 16px; }
+  h2 { font-size: 15px; text-transform: uppercase; letter-spacing: .06em; color: #64748b; margin: 28px 4px 10px; }
+  .app { display: flex; gap: 16px; align-items: flex-start; background: #fff; border-radius: 16px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.12); margin-bottom: 12px; }
+  .app img { width: 72px; height: 72px; border-radius: 16px; flex-shrink: 0; }
+  .app h3 { margin: 0; font-size: 18px; color: var(--blu); }
+  .app p { margin: 4px 0 0; font-size: 15px; color: #475569; }
+  .stato { display: inline-block; margin-top: 8px; font-size: 13px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: #e2e8f0; color: #334155; }
+  .stato.ok { background: #dcfce7; color: #166534; }
+  .link { display: inline-block; margin: 10px 14px 0 0; font-size: 15px; font-weight: 600; color: var(--blu); }
+  .contatti { background: var(--verde); color: #fff; border-radius: 16px; padding: 18px; margin-top: 8px; }
+  .contatti a { color: var(--oro); }
+  footer { text-align: center; color: #64748b; font-size: 13px; padding: 24px 16px 40px; }
 </style>
 </head>
 <body>
 <header>
   <h1>fcdeveloperapps</h1>
-  <p>Le nostre app</p>
+  <p>Guide e mappe per scoprire il Veneto a piedi</p>
 </header>
 <main>
-  <a class="app" href="https://play.google.com/store/apps/details?id=com.monumenti.venezia">
-    <img src="venezia/icona.png" alt="">
+
+  <h2>Le nostre app</h2>
+
+  <div class="app">
+    <img src="veneto/icona.png" alt="">
     <div>
-      <h2>Venezia: Monumenti &amp; altro</h2>
-      <p>Mappa dei monumenti, itinerari, orari, maree e vaporetti · Google Play</p>
+      <h3>Veneto: Monumenti &amp; altro</h3>
+      <p>La guida del Veneto: chiese, palazzi, piazze e ponti di Padova, Verona, Vicenza, Treviso, Rovigo, Belluno e Venezia, con itinerari a piedi, percorsi dalla tua posizione, curiosità e cartoline. Funziona anche senza connessione, dopo aver scaricato la città.</p>
+      <span class="stato">In arrivo</span><br>
+      <a class="link" href="veneto/privacy.html">Privacy</a>
     </div>
-  </a>
+  </div>
+
+  <h2>Contatti</h2>
+  <div class="contatti">
+    <p style="margin: 0 0 6px">Per domande, segnalazioni o informazioni sulle app:</p>
+    <a href="mailto:info.fc.developer@gmail.com">info.fc.developer@gmail.com</a>
+  </div>
+
 </main>
+<footer>
+  Sviluppatore: Federico Coppola
+</footer>
 </body>
 </html>
